@@ -1,35 +1,45 @@
-import gameCommons.Game;
-		import gameCommons.IFrog;
-		import util.Case;
-		import util.Direction;
+package frog;
 
-		import java.awt.event.KeyEvent;
+import gameCommons.Game;
+import gameCommons.IFrog;
+import util.Case;
+import util.Direction;
+
+
+
+
 
 public class Frog implements IFrog {
 
-
-	//*********Attributs********//
-
 	private Game game;
 	private Case c;
-	private int x;
-	private int y;
 
-	//*********Constructeur*********//
-
-	public Frog(Game game){
+	public Frog(Game game) {
 		this.game = game;
-		this.x = game.width/2;
-		this.y = 0;
-		this.c = case(x, y);
+		this.c = new Case(game.width/2,0);
 	}
 
-	//*********Methodes*********//
-	public static void Case getPosition(){
+	@Override
+	public Case getPosition() {
 		return c;
 	}
 
-
-	public static void Direction getDirection(){
+	@Override
+	public Case getDirection() {
+		return c;
 	}
+
+	@Override
+	public void move(Direction key) {
+		if( key == Direction.up) {
+			this.c = new Case(c.absc, c.ord+1);
+		}else if( key == Direction.down) {
+			this.c = new Case(c.absc, c.ord - 1);
+		}else if( key == Direction.right) {
+			this.c = new Case(c.absc + 1, c.ord);
+		}else if( key == Direction.left) {
+			this.c = new Case(c.absc - 1, c.ord);
+		}
+	}
+
 }
