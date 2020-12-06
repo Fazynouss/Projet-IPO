@@ -14,9 +14,13 @@ public class Game {
 
 	// Caracteristique de la partie
 	public final int width;
-	public final int height;
+	public  int height;
 	public final int minSpeedInTimerLoops;
 	public final double defaultDensity;
+	public int score = 0;
+	public int hauteur = 0;
+	public final long timerini = System.currentTimeMillis();
+	public boolean fini = false;
 
 	// Lien aux objets utilis�s
 	private IEnvironment environment;
@@ -78,8 +82,22 @@ public class Game {
 	 * @return true si le partie est perdue
 	 */
 	public boolean testLose() {
+
+
 		if (!environment.isSafe(frog.getPosition())) {
-			graphic.endGameScreen("You Loose !");
+
+			if (fini == false ) {
+				final long timermilli = System.currentTimeMillis() - timerini;
+
+
+				final long timerS = timermilli / 1000;
+				String TimeStr = Long.toString(timerS);
+				graphic.endGameScreen("You Loose !" + "  " +
+						"Durée = " + TimeStr+ " Score :" + score);
+				fini = true;
+
+			}
+
 		}
 		return false;
 	}
@@ -92,7 +110,18 @@ public class Game {
 	 */
 	public boolean testWin() {
 		if (environment.isWinningPosition(frog.getPosition())) {
-			graphic.endGameScreen("You Win !");
+			if (fini == false ) {
+				final long timermilli = System.currentTimeMillis() - timerini;
+
+
+				final long timerS = timermilli / 1000;
+				String TimeStr = Long.toString(timerS);
+				graphic.endGameScreen("You Win !" + "  " +
+						"Durée = " + TimeStr );
+				fini = true;
+
+			}
+
 			return true;
 		}
 		return false;
@@ -105,10 +134,13 @@ public class Game {
 	public void update() {
 		graphic.clear();
 		environment.update();
-		this.graphic.add(new Element(frog.getPosition(), Color.GREEN));
+		this.graphic.add(new Element(frog.getPosition().absc, 0, Color.GREEN));
 		testLose();
 		testWin();
 	}
 
+	public int absFrog() {
+		return frog.getPosition().absc;
+	}
 }
 

@@ -6,7 +6,7 @@
       <sourceFolder url="file://$MODULE_DIR$/squelette1FRog/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/frogSquel2/src" isTestSource="false" />
     </content>
-    <orderEntry type="inheritedJdk" />
+    <orderEntry type="jdk" jdkName="15" jdkType="JavaSDK" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="givenEnvironment" level="project" />
   </component>

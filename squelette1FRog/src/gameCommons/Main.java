@@ -1,13 +1,14 @@
 package gameCommons;
 
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import JeuInfini.FrogInf;
+import JeuInfini.EnvInf;
+
 
 import javax.swing.Timer;
 
-import environment.Environment;
-import frog.Frog;
-import givenEnvironment.GivenEnvironment;
 import graphicalElements.FroggerGraphic;
 import graphicalElements.IFroggerGraphics;
 
@@ -28,22 +29,45 @@ public class Main {
 		//Cr�ation de la partie
 		Game game = new Game(graphic, width, height, minSpeedInTimerLoops, defaultDensity);
 		//Cr�ation et liason de la grenouille
-		IFrog frog = new Frog(game);
+		IFrog frog = new FrogInf(game);
 		game.setFrog(frog);
 		graphic.setFrog(frog);
 		//Cr�ation et liaison de l'environnement
-		IEnvironment env = new Environment(game);
+		IEnvironment env = new EnvInf(game);
 		game.setEnvironment(env);
-				
+		java.lang.System.out.println(env);
+
+
+		for(int i = 0; i < width+10; i++){
+			game.update();
+		}
+
+
 		//Boucle principale : l'environnement s'acturalise tous les tempo milisecondes
+        final long timerini = System.currentTimeMillis();
 		Timer timer = new Timer(tempo, new ActionListener() {
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				game.update();
 				graphic.repaint();
+				long timermilli =  System.currentTimeMillis()-timerini;
+				long timer = timermilli/1000;
+				System.out.println(timer);
+
+
 			}
+
+
+
+
 		});
 		timer.setInitialDelay(0);
 		timer.start();
+
+
+
+
+
 	}
 }
