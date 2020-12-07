@@ -115,11 +115,18 @@ public class LaneInf {
     }
 
     private Case getBeforeFirstCase() {
+        if(game.height % 2 == 0) {
 
+            if (leftToRight) {
+                return new Case(-1, game.height - 19 + 2 * game.randomGen.nextInt(game.height + 10));
+            } else
+                return new Case(game.width, game.height - 18 + 2 * game.randomGen.nextInt(game.height + 10));
+        }
+        else
         if (leftToRight) {
-            return new Case(-1,  game.height- 19 + 2*game.randomGen.nextInt(game.height+10));
+            return new Case(-1, game.height - 18 + 2 * game.randomGen.nextInt(game.height + 10));
         } else
-            return new Case(game.width,  game.height - 18 + 2*game.randomGen.nextInt(game.height+10));
+            return new Case(game.width, game.height - 19 + 2 * game.randomGen.nextInt(game.height + 10));
     }
 
 

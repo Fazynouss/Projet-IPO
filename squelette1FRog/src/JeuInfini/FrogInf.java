@@ -14,7 +14,7 @@ public class FrogInf implements IFrog {
     private Game game;
     private Case c;
     private Direction d;
-    public boolean begin = true;
+
 
     public FrogInf(Game game) {
         this.game = game;
@@ -40,7 +40,6 @@ public class FrogInf implements IFrog {
             }
             System.out.println( "y= "+ game.hauteur +" x= " + this.c.absc+ " score= " + game.score );
             game.height = game.height+1;
-            begin = true;
         }else if( key == Direction.down && c.ord > 0) {
             this.c = new Case(c.absc, c.ord - 1);
             this.game.hauteur = this.game.hauteur-1;
@@ -57,8 +56,6 @@ public class FrogInf implements IFrog {
         }
 
     }
-    public boolean getBegin(){
-        return begin;
-    }
+
 
 }

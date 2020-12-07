@@ -13,31 +13,33 @@ public class Frog implements IFrog {
 
 	private Game game;
 	private Case c;
+	private Direction d;
 
 	public Frog(Game game) {
 		this.game = game;
 		this.c = new Case(game.width/2,0);
+		this.d = Direction.up;
 	}
 
 	@Override
 	public Case getPosition() {
-		return c;
+		return this.c;
 	}
 
 	@Override
-	public Case getDirection() {
-		return c;
+	public Direction getDirection() {
+		return this.d;
 	}
 
 	@Override
 	public void move(Direction key) {
 		if( key == Direction.up) {
 			this.c = new Case(c.absc, c.ord+1);
-		}else if( key == Direction.down) {
+		}else if( key == Direction.down && c.ord < 1) {
 			this.c = new Case(c.absc, c.ord - 1);
-		}else if( key == Direction.right) {
+		}else if( key == Direction.right && c.absc < 25 && c.absc > -1) {
 			this.c = new Case(c.absc + 1, c.ord);
-		}else if( key == Direction.left) {
+		}else if( key == Direction.left && c.absc < 26 && c.absc > 0) {
 			this.c = new Case(c.absc - 1, c.ord);
 		}
 	}
